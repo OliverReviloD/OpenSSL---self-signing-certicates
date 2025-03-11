@@ -17,6 +17,8 @@ Read the examples
         https : // www . Scottbrady91 . Com / OpenSSL / Creating-RSA-Keys-using-OpenSSL
 
 
+Finally create a folder structure like below and run the example CMD file
+
 ![image](https://github.com/user-attachments/assets/1375cd2e-a33d-4326-94b9-d1e7b89fbace)
 
 ![image](https://github.com/user-attachments/assets/1571fc96-e78e-4b0b-8c7c-bb8c9be1bfaa)
