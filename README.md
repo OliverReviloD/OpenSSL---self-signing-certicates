@@ -1,6 +1,11 @@
 # OpenSSL---self-signing-certicates
 create certificates via OpenSSL - here as example for Dell Command Configure 5.1.0 
 
+Install OpenSSL
+Read the examples   
+  https : // www . Scottbrady91 . Com / OpenSSL / Creating-RSA-Keys-using-OpenSSL
+![image](https://github.com/user-attachments/assets/da612296-2c65-4c12-806f-b7917716315a)
+
 
 ![image](https://github.com/user-attachments/assets/1375cd2e-a33d-4326-94b9-d1e7b89fbace)
 
