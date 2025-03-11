@@ -4,7 +4,7 @@ create certificates via OpenSSL - here as example for Dell Command Configure 5.1
 Install OpenSSL
 
 e.g.   
-        https : // slproweb . com / products / Win32OpenSSL.html  ![image](https://github.com/user-attachments/assets/28af578c-84e3-4581-b375-a79179a0126b)
+        https : // slproweb . com / products / Win32OpenSSL.html  
 
 or     
          winget install -e ShiningLight.OpenSSL.Light
