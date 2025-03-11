@@ -1,0 +1,47 @@
+@REM =================================================
+@REM    configure your variables here
+@REM =================================================
+Set ValidDays=360
+set CertificatesFolder=C:\DCC_5.1.0\Certificates
+set CommonNamePreFix=DCC-5.1.0
+set FriendlyName=Provisioning
+set FriendlyName=Configuration1
+set FriendlyName=Configuration2
+set FriendlyName=Configuration3
+
+@REM =================================================
+@REM    no more variable changes after this point
+@REM =================================================
+
+if not exist "%CertificatesFolder%\." md "%CertificatesFolder%"
+
+set TargetFolder=%CertificatesFolder%\%FriendlyName%
+if not exist "%TargetFolder%\." md "%TargetFolder%"
+
+@REM =================================================
+@REM   copy OpenSLL.cfg  to TargetFolder
+copy "%~dp0OpenSSL_Template.cfg" "%TargetFolder%\OpenSSL.cfg"
+@REM   append one line to TargetFolder\OpenSLL.cfg  
+echo commonName                      = %CommonNamePreFix%-%FriendlyName%  >> "%TargetFolder%\OpenSSL.cfg"
+
+set PrivateKeyPem=%FriendlyName%_private-key.pem
+set PublicKeyPem=%FriendlyName%_public-key.pem
+set CertificatePem=%FriendlyName%_Certificate.pem
+set CertificatePfx=%FriendlyName%_Certificate.Pfx
+
+@REM =================================================
+@REM generate a private key with the correct length 
+openssl genrsa -out "%TargetFolder%\%PrivateKeyPem%" 3072
+
+@REM =================================================
+@REM  generate corresponding public key 
+openssl rsa -in "%TargetFolder%\%PrivateKeyPem%" -pubout -out "%TargetFolder%\%PublicKeyPem%" 
+
+@REM =================================================
+@REM  create a self-signed certificate 
+@set OPENSSL_CONF="%TargetFolder%\openssl.cfg"
+openssl req  -config %OPENSSL_CONF% -new -x509 -key "%TargetFolder%\%PrivateKeyPem%" -out "%TargetFolder%\%CertificatePem%" -days %ValidDays%
+
+@REM =================================================
+@REM  OPTIONAL  convert pem to pfx - no password  
+openssl pkcs12 -export -inkey "%TargetFolder%\%PrivateKeyPem%" -in "%TargetFolder%\%CertificatePem%" -out "%TargetFolder%\%CertificatePfx%"
